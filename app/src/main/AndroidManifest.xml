@@ -14,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ValorantAgentsGuide"
         tools:targetApi="31">
-        <activity android:name=".ui.detail.DetailActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.detail.DetailActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

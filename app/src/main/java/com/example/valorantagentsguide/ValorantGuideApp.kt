@@ -3,7 +3,11 @@ package com.example.valorantagentsguide
 import android.content.Intent
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
@@ -20,6 +24,7 @@ import com.example.valorantagentsguide.data.local.entity.AgentsEntity
 import com.example.valorantagentsguide.ui.common.Result
 import com.example.valorantagentsguide.ui.component.AgentsList
 import com.example.valorantagentsguide.ui.detail.DetailActivity
+import com.example.valorantagentsguide.ui.profile.ProfileActivity
 import com.example.valorantagentsguide.ui.screen.ErrorScreen
 import com.example.valorantagentsguide.ui.screen.LoadingScreen
 
@@ -54,11 +59,11 @@ fun ValorantGuideApp(
                             ) { }
                         },
 
-//                        actions = {
-//                            IconButton(onClick = {navigateToProfile(activity)} ){
-//                                Icon(imageVector = Icons.Filled.Person, contentDescription = "about page")
-//                            }
-//                        }
+                        actions = {
+                            IconButton(onClick = {navigateToProfile(activity)} ){
+                                Icon(imageVector = Icons.Filled.Person, contentDescription = "about page")
+                            }
+                        }
                     )
                 }
 
@@ -81,6 +86,11 @@ fun ValorantGuideApp(
             ErrorScreen(message = result.error, modifier)
         }
     }
+}
+
+fun navigateToProfile(activity: ComponentActivity){
+    val intent = Intent(activity, ProfileActivity::class.java)
+    activity.startActivity(intent)
 }
 
 
