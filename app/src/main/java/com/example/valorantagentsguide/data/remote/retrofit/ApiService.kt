@@ -4,6 +4,6 @@ import com.example.valorantagentsguide.data.remote.response.AgentsResponse
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("/agents")
+    @GET("agents")
     suspend fun getAgents(): AgentsResponse
 }
