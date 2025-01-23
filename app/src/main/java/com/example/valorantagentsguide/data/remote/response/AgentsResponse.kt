@@ -1,6 +1,8 @@
 package com.example.valorantagentsguide.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class AgentsResponse(
 
@@ -29,6 +31,7 @@ data class Role(
 	val uuid: String
 )
 
+@Parcelize
 data class AbilitiesItem(
 
 	@field:SerializedName("displayIcon")
@@ -39,10 +42,7 @@ data class AbilitiesItem(
 
 	@field:SerializedName("description")
 	val description: String,
-
-	@field:SerializedName("slot")
-	val slot: String
-)
+) : Parcelable
 
 data class DataItem(
 
