@@ -3,6 +3,7 @@ package com.example.valorantagentsguide.data
 import android.util.Log
 import com.example.valorantagentsguide.data.local.entity.AgentsEntity
 import com.example.valorantagentsguide.data.local.room.AgentsDao
+import com.example.valorantagentsguide.data.remote.response.AbilitiesItem
 import com.example.valorantagentsguide.data.remote.retrofit.ApiService
 import com.example.valorantagentsguide.ui.common.Result
 import kotlinx.coroutines.Dispatchers
@@ -20,18 +21,22 @@ class AgentsRepository(
             val response = apiService.getAgents()
             val agentsList = response.data.map { agent ->
                 val role = agent.role
-                val abilities = agent.abilities.firstOrNull()
+                val abilities = agent.abilities?.map{ ability ->
+                    AbilitiesItem(
+                        displayName = ability.displayName ?: "Unknown",
+                        displayIcon = ability.displayIcon ?: "",
+                        description = ability.description ?: "No description available"
+                    )
+                } ?: emptyList()
                 AgentsEntity(
                     uuid = agent.uuid,
                     displayName = agent.displayName,
                     description = agent.description,
                     fullPortraitImg = agent.fullPortrait,
                     displayIcon = agent.displayIcon,
-                    roleName = role.displayName,
-                    roleIcon = role.displayIcon,
-                    abilityName = abilities?.displayName ?: "Unknown",
-                    abilityIcon = abilities?.displayIcon ?: "",
-                    abilityDesc = abilities?.description ?: "No description available"
+                    roleName = role?.displayName ?: "Unknown",
+                    roleIcon = role?.displayIcon ?: "",
+                    abilities = abilities
                 )
             }
             agentsDao.insertsAgents(agentsList)
