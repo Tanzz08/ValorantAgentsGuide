@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.valorantagentsguide.data.remote.response.AbilitiesItem
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -20,7 +21,7 @@ class AgentsEntity(
     val description: String,
 
     @field:ColumnInfo(name = "fullPortraitImg")
-    val fullPortraitImg: String,
+    val fullPortraitImg: String?,
 
     @field:ColumnInfo(name = "displayIcon")
     val displayIcon: String,
@@ -31,13 +32,8 @@ class AgentsEntity(
     @field:ColumnInfo(name = "roleIcon")
     val roleIcon: String,
 
-    @field:ColumnInfo(name = "abilityName")
-    val abilityName: String,
 
-    @field:ColumnInfo(name = "abilityIcon")
-    val abilityIcon: String,
-
-    @field:ColumnInfo(name = "abilityDesc")
-    val abilityDesc: String,
+    @field:ColumnInfo(name = "abilities")
+    val abilities: List<AbilitiesItem>
 
 ) : Parcelable
